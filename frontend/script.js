@@ -11,7 +11,7 @@
    ============================================================ */
 
 // ── API ENDPOINT ─────────────────────────────────────────────
-const API = "http://localhost:5000";
+const API = "https://logiq-anomaly-detection.onrender.com";
 
 
 // ── GLOBAL STATE VARIABLES ───────────────────────────────────
