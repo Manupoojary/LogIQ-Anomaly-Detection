@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LogIQ — AIOps Anomaly Detection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">
+    <div class="brand-icon">LQ</div>
+    <div>
+      <div class="brand-name">LogIQ</div>
+      <div class="brand-sub">AIOps</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="section-label">Configuration</div>
+
+  <div class="control-group">
+    <label class="control-label">Model</label>
+    <select id="model-select" class="select">
+      <option value="isolation_forest">Isolation Forest</option>
+      <option value="lstm">LSTM</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Dataset</label>
+    <select id="dataset-select" class="select">
+      <option value="synthetic">Log Simulator</option>
+      <option value="nasa">NASA HTTP</option>
+    </select>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Pipeline</label>
+    <select id="pipeline-select" class="select">
+      <option value="file">Simple Ingest</option>
+      <option value="kafka">Kafka (production)</option>
+    </select>
+  </div>
+
+  <!-- <div class="divider"></div>
+  <div class="section-label">Controls</div>
+
+  <button class="btn-start" onclick="startPipeline()">▶ Start Pipeline</button>
+  <button class="btn-stop"  onclick="stopPipeline()">■ Stop Pipeline</button> -->
+
+  <div class="divider"></div>
+
+  <div class="status-panel">
+    <div class="status-row">
+      <span class="status-dot" id="status-dot"></span>
+      <span class="status-text" id="status-text">Stopped</span>
+    </div>
+    <div class="status-algo" id="status-algo">No pipeline running</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="model-card" id="model-card">
+    <div class="model-card-title">Isolation Forest</div>
+    <ul class="model-card-list">
+      <li>Unsupervised ML</li>
+      <li>Trains on first 50 logs</li>
+      <li>No labelled data needed</li>
+      <li>Industry standard</li>
+    </ul>
+  </div>
+
+  <div class="sidebar-footer">LogIQ v2 · Flask · SQLite · sklearn</div>
+</aside>
+
+<main class="main">
+
+  <header class="topbar">
+    <div>
+      <h1 class="page-title">Live Log Anomaly Detection</h1>
+      <p class="page-sub">
+        Watching <strong id="dataset-label">synthetic</strong> logs ·
+        Algorithm: <strong id="algo-label">Isolation Forest</strong>
+      </p>
+    </div>
+    <div class="live-pill" id="live-pill">● LIVE</div>
+  </header>
+
+  <section class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Total Logs</div>
+      <div class="metric-value" id="m-total">0</div>
+    </div>
+    <div class="metric-card metric-anomaly">
+      <div class="metric-label">Anomalies</div>
+      <div class="metric-value" id="m-anomalies">0</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Normal</div>
+      <div class="metric-value" id="m-normal">0</div>
+    </div>
+    <div class="metric-card metric-rate">
+      <div class="metric-label">Anomaly Rate</div>
+      <div class="metric-value" id="m-rate">0%</div>
+    </div>
+  </section>
+
+  <section class="charts-row">
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Log Volume by Service</span>
+      </div>
+      <canvas id="serviceChart" height="200"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">
+        <span class="chart-title">Anomaly vs Normal</span>
+      </div>
+      <canvas id="pieChart" height="200"></canvas>
+    </div>
+  </section>
+
+  <!-- Timeline: sticky Y axis overlay + scrollable canvas -->
+  <div class="chart-card">
+    <div class="chart-header">
+      <span class="chart-title">Live Anomaly Timeline</span>
+      <div class="tl-legend">
+        <span class="tl-total">— Total logs (left)</span>
+        <span class="tl-anomaly">— Anomalies (right)</span>
+        <span class="chart-hint">← scroll →</span>
+      </div>
+    </div>
+    <div class="tl-outer">
+      <!-- Sticky Y axis drawn by plugin on top -->
+      <div class="tl-scroll" id="tl-scroll">
+        <canvas id="timelineChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-header">
+      <span class="chart-title">Live Log Feed</span>
+      <span class="chart-hint">↕ scroll for history</span>
+    </div>
+    <div class="feed-scroll">
+      <table class="feed-table">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Level</th>
+            <th>Service</th>
+            <th>Message</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="feed-body">
+          <tr><td colspan="5" class="feed-empty">No logs yet — start the pipeline</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

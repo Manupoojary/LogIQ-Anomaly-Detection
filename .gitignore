@@ -1,0 +1,66 @@
+# ================================
+# Python
+# ================================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# ================================
+# Environment Variables
+# ================================
+.env
+
+# ================================
+# Logs & Dataset Files (IMPORTANT)
+# ================================
+*.log
+*.gz
+
+# Ignore ALL raw dataset files
+datasets/raw/*
+
+# BUT keep folder structure
+!datasets/raw/
+!datasets/raw/.gitkeep
+
+# ================================
+# Databases
+# ================================
+*.db
+*.sqlite3
+
+# ================================
+# OS Files
+# ================================
+.DS_Store
+Thumbs.db
+
+# ================================
+# IDE / Editor
+# ================================
+.vscode/
+.idea/
+
+# ================================
+# Node (future frontend tools)
+# ================================
+node_modules/
+
+# ================================
+# Project-specific
+# ================================
+execution.txt
+test.py
+
+# ================================
+# Optional (uncomment if needed)
+# ================================
+# logs/
+# *.csv
+# *.tmp

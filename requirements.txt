@@ -1,0 +1,10 @@
+flask
+flask-cors
+scikit-learn
+numpy
+pandas
+kafka-python
+elasticsearch
+streamlit
+plotly
+tensorflow
