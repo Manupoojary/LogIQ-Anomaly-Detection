@@ -7,6 +7,6 @@ pandas
 # elasticsearch
 streamlit
 plotly
-tensorflow
+tensorflow==2.13.0
 
 
