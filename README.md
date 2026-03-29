@@ -7,7 +7,7 @@ It ingests logs, detects anomalies, and visualizes insights through an interacti
 
 ## 🌐 Live Demo
 
-> 🔗 Live Dashboard: ***Coming Soon***
+> 🔗 Live Dashboard: (https://log-iq-anomaly-detection.vercel.app)
 > (Will be deployed on Vercel + Render)
 
 ---
