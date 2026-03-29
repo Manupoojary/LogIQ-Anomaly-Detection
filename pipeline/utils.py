@@ -12,6 +12,8 @@ PIPELINE_REGISTRY = {
 }
 
 
+
+
 def get_pipeline(name: str):
     """
     Returns an instance of the requested pipeline.

@@ -251,3 +251,4 @@ tr:hover td { background: var(--bg3); }
 .toast.success { border-left-color: var(--green); }
 .toast.warning { border-left-color: var(--amber); }
 .toast.error   { border-left-color: var(--red);   }
+

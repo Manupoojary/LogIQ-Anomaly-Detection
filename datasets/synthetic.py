@@ -46,3 +46,5 @@ class SyntheticDataset(BaseDataset):
         user_id   = random.randint(1, 500)
 
         return f"{timestamp} {level} {service} {msg} user_id={user_id}"
+
+

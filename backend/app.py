@@ -36,7 +36,7 @@ def info():
 
     pipelines = list_pipelines()
 
-    # 🚫 Remove kafka if disabled
+    #  Remove kafka if disabled
     if not ALLOW_KAFKA:
         pipelines = [p for p in pipelines if p != "kafka"]
 
@@ -196,3 +196,6 @@ if __name__ == "__main__":
     init_storage(storage_name)
     print(f"[Backend] Starting with storage={storage_name}")
     app.run(host=BACKEND_HOST, port=BACKEND_PORT, debug=BACKEND_DEBUG)
+
+
+

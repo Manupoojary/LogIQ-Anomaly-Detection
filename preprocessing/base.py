@@ -10,6 +10,7 @@
 import numpy as np
 
 
+
 class BasePreprocessor:
 
     def parse(self, raw_log: str) -> dict:

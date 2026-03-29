@@ -59,3 +59,5 @@ class NASADataset(BaseDataset):
             self._file.seek(0)
             self._iterator = iter(self._file)   
             return next(self._iterator).strip()
+        
+        

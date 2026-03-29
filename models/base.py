@@ -9,7 +9,6 @@
 
 import numpy as np
 
-
 class BaseModel:
 
     def train(self, X: list):

@@ -8,6 +8,8 @@
 # ============================================================
 
 
+
+
 class BaseStorage:
 
     def save(self, parsed_log: dict, anomaly: bool):
