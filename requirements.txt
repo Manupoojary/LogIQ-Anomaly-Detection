@@ -3,8 +3,8 @@ flask-cors
 scikit-learn
 numpy
 pandas
-kafka-python
-elasticsearch
+# kafka-python    s
+# elasticsearch
 streamlit
 plotly
 tensorflow
