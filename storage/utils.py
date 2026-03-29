@@ -4,11 +4,11 @@
 # ============================================================
 
 from storage.sqlite        import SQLiteStorage
-from storage.elasticsearch import ElasticsearchStorage
+# from storage.elasticsearch import ElasticsearchStorage
 
 STORAGE_REGISTRY = {
     "sqlite":        SQLiteStorage,
-    "elasticsearch": ElasticsearchStorage,
+    # "elasticsearch": ElasticsearchStorage,
 }
 
 
