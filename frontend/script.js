@@ -11,7 +11,7 @@
    ============================================================ */
 
 // ── API ENDPOINT ─────────────────────────────────────────────
-const API = "https://logiq-anomaly-detection.onrender.com";
+const API = "http://localhost:5000";
 
 
 // ── GLOBAL STATE VARIABLES ───────────────────────────────────
@@ -700,9 +700,21 @@ function updateSelect(id, options) {
   }
 }
 
+
+/* function to wake up render backed */
+async function wakeBackend() {
+  try {
+    await fetch("https://your-backend-url.onrender.com/");
+  } catch (e) {
+    console.log("Waking backend...");
+  }
+}
+
 /* ── Boot ──────────────────────────────────────────────────── */
 (async function () {
   initCharts();
+
+  wakeBackend();
 
   await loadDropdowns();   // ✅ dynamic dropdowns
 
