@@ -704,7 +704,7 @@ function updateSelect(id, options) {
 /* function to wake up render backed */
 async function wakeBackend() {
   try {
-    await fetch("https://your-backend-url.onrender.com/");
+    await fetch("https://logiq-anomaly-detection.onrender.com");
   } catch (e) {
     console.log("Waking backend...");
   }
