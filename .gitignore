@@ -57,6 +57,7 @@ node_modules/
 # ================================
 execution.txt
 test.py
+create_project.py
 
 # ================================
 # Optional (uncomment if needed)
