@@ -11,7 +11,13 @@
    ============================================================ */
 
 // ── API ENDPOINT ─────────────────────────────────────────────
-const API = "https://logiq-anomaly-detection.onrender.com";
+// const API = "http://localhost:5000";
+// const API = "https://logiq-anomaly-detection.onrender.com";
+
+const API =
+  window.location.hostname.includes("localhost")
+    ? "http://localhost:5000"
+    : "https://logiq-anomaly-detection.onrender.com";
 
 
 // ── GLOBAL STATE VARIABLES ───────────────────────────────────
@@ -704,9 +710,16 @@ function updateSelect(id, options) {
 /* function to wake up render backed */
 async function wakeBackend() {
   try {
-    await fetch("https://logiq-anomaly-detection.onrender.com");
-  } catch (e) {
     console.log("Waking backend...");
+
+    await fetch(API + "/status", {
+      method: "GET",
+      mode: "cors"
+    });
+
+    console.log("Backend awake");
+  } catch (e) {
+    console.log("Wake failed (expected during cold start)");
   }
 }
 

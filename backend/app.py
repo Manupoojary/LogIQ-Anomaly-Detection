@@ -14,7 +14,7 @@ from datasets.utils   import list_datasets
 from pipeline.utils   import list_pipelines
 
 app     = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 storage         = None
 pipeline_obj    = None
